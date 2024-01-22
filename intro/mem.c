@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
-  int* p = malloc(sizeof(int) * 10 /* GB */ * 1024*1024*1024);
+  int *p = malloc(sizeof(int) * 10 /* GB */ * 1024 * 1024 * 1024);
   assert(p != NULL);
   printf("(%d) addr pointed to by p: %p\n", getpid(), p);
   *p = 0;
