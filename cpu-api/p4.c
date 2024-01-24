@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
-  int rc = fork();
+  pid_t rc = fork();
   if (rc < 0) {
     // fork failed; exit
     fprintf(stderr, "fork failed\n");
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     execvp(myargs[0], myargs);  // runs word count
   } else {
     // parent goes down this path (original process)
-    int wc = wait(NULL);
+    pid_t wc = wait(NULL);
     assert(wc >= 0);
   }
   return 0;

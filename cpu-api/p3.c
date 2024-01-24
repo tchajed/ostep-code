@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
   printf("hello world (pid:%d)\n", (int)getpid());
-  int rc = fork();
+  pid_t rc = fork();
   if (rc < 0) {
     // fork failed; exit
     fprintf(stderr, "fork failed\n");
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     printf("this shouldn't print out");
   } else {
     // parent goes down this path (original process)
-    int wc = wait(NULL);
+    pid_t wc = wait(NULL);
     printf("hello, I am parent of %d (wc:%d) (pid:%d)\n", rc, wc,
            (int)getpid());
   }
