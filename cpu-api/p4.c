@@ -14,8 +14,8 @@ int main(int argc, char *argv[]) {
     exit(1);
   } else if (rc == 0) {
     // child: redirect standard output to a file
-    close(STDOUT_FILENO);
-    open("./p4.output", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+    int out_fd = open("./p4.output", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    dup2(out_fd, STDOUT_FILENO);
 
     // now exec "wc"...
     char *myargs[3];
