@@ -9,10 +9,9 @@
 int main(int argc, char *argv[]) {
   pid_t rc = fork();
   if (rc < 0) {
-    // fork failed; exit
-    fprintf(stderr, "fork failed\n");
-    exit(1);
-  } else if (rc == 0) {
+    exit(1); // fork failed
+  }
+  if (rc == 0) {
     // child: redirect standard output to a file
     int out_fd = open("./p4.output", O_CREAT | O_WRONLY | O_TRUNC, 0644);
     dup2(out_fd, STDOUT_FILENO);
